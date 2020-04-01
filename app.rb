@@ -1,4 +1,5 @@
 require 'sinatra/base'
+require './lib/player'
 
 class Battles < Sinatra::Base
 
@@ -14,6 +15,8 @@ set :session_secret, "New"
     $p2 = Player.new(params[:p2name])
     session[:p2hp] = 100
     redirect '/play'
+    p $p1
+    p $p2
   end
   
   get '/play' do
