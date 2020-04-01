@@ -15,10 +15,4 @@ describe Player do
       expect { subject.take_damage }.to change { subject.hp }.by(-Player::STANDARD_DAMAGE )
     end
   end
-
-  describe '#attack' do
-    it 'attack a player' do
-      expect { dave.attack(jim) }.to change { jim.hp }.by(-Player::STANDARD_DAMAGE )
-    end
-  end
 end

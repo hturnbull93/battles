@@ -13,8 +13,4 @@ class Player
   def take_damage
     @hp -= STANDARD_DAMAGE 
   end
-
-  def attack(player)
-    player.take_damage
-  end
 end
