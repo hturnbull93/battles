@@ -10,15 +10,15 @@ set :session_secret, "New"
   end
 
   post '/names' do
-    session[:p1name] = params[:p1name]
-    session[:p2name] = params[:p2name]
+    $p1 = Player.new(params[:p1name])
+    $p2 = Player.new(params[:p2name])
     session[:p2hp] = 100
     redirect '/play'
   end
   
   get '/play' do
-    @p1name = session[:p1name]
-    @p2name = session[:p2name]
+    @p1name = $p1.name
+    @p2name = $p2.name
     @p2hp = session[:p2hp]
     @result = session[:result]
     erb :play
