@@ -19,13 +19,14 @@ set :session_secret, "New"
   get '/play' do
     @p1name = $p1.name
     @p2name = $p2.name
-    @p2hp = session[:p2hp]
+    @p2hp = $p2.hp
     @result = session[:result]
     erb :play
   end
 
   post '/action' do
     session[:result] = params[:action]
+    $p2.take_damage
     redirect '/play'
   end
 
