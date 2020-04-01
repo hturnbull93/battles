@@ -1,6 +1,6 @@
 def sign_in_and_play
   visit '/'
-    fill_in('p1name', with: 'John')
-    fill_in('p2name', with: 'Pete')
+    fill_in('p1name', with: 'Dave')
+    fill_in('p2name', with: 'Jim')
     click_button('Go!')
 end
