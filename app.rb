@@ -1,5 +1,6 @@
 require 'sinatra/base'
 require './lib/player'
+require './lib/game'
 
 class Battles < Sinatra::Base
 
@@ -11,6 +12,7 @@ set :session_secret, "New"
   end
 
   post '/names' do
+    $game = Game.new
     $p1 = Player.new(params[:p1name])
     $p2 = Player.new(params[:p2name])
     redirect '/play'
@@ -25,8 +27,15 @@ set :session_secret, "New"
   end
 
   post '/action' do
+    @p1 = $p1
+    @p2 = $p2
+    @game = $game
+
     session[:result] = params[:action]
-    $p2.take_damage
+    @p1name = $p1.name
+    @p2name = $p2.name
+    @game.attack(@p2)
+
     redirect '/play'
   end
 
