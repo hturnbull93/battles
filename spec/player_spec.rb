@@ -11,8 +11,9 @@ describe Player do
   end
 
   describe '#take_damage' do
-    it 'reduces players HP' do
-      expect { subject.take_damage }.to change { subject.hp }.by(-Player::STANDARD_DAMAGE )
+    it 'reduces players HP by fixed amount plus random bonus damage' do
+      allow_any_instance_of(Object).to receive(:rand).and_return(5)
+      expect { subject.take_damage }.to change { subject.hp }.by(-(Player::STANDARD_DAMAGE + 5))
     end
   end
 end
