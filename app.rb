@@ -12,32 +12,19 @@ set :session_secret, "New"
   end
 
   post '/names' do
-    $game = Game.new
-    $p1 = Player.new(params[:p1name])
-    $p2 = Player.new(params[:p2name])
+    $game = Game.new(params[:p1name], params[:p2name])
     redirect '/play'
   end
   
   get '/play' do
-    @p1name = $p1.name
-    @p2name = $p2.name
-    @p2hp = $p2.hp
+    @game = $game
     @result = session[:result]
     erb :play
   end
 
   post '/action' do
-    @p1 = $p1
-    @p2 = $p2
-    @game = $game
-
     session[:result] = params[:action]
-    @p1name = $p1.name
-    @p2name = $p2.name
-    @game.attack(@p2)
-
+    $game.attack($game.p2)
     redirect '/play'
   end
-
 end
-
