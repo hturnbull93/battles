@@ -21,9 +21,18 @@ set :session_secret, "New"
     erb :play
   end
 
+  get '/game-over' do
+    @game = $game
+    erb :game_over
+  end
+
   post '/action' do
     session[:result] = params[:action]
     $game.attack
-    redirect '/play'
+    if !$game.winner.nil?
+      redirect '/game-over' 
+    else
+      redirect '/play' 
+    end
   end
 end
