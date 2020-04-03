@@ -1,12 +1,10 @@
 require 'game'
 
-
-
 describe Game do
   
   # Player instance double
-  let(:dave) { double(:player) }
-  let(:jim) { double(:player) }
+  let(:dave) { double(:dave, take_damage: 'Ow') }
+  let(:jim) { double(:jim, take_damage: 'Ow') }
 
   # Player class double
   let(:player_class) do
@@ -27,10 +25,20 @@ describe Game do
     end
   end
 
+  describe 'Player switching' do
+    it 'initially player one is the active player' do
+      expect(subject.active).to eq dave
+    end
+    it 'after an action player two is the active player' do
+      subject.attack
+      expect(subject.active).to eq jim
+    end
+  end
+
   describe '#attack' do
     it 'attack a player' do
       expect(jim).to receive :take_damage
-      subject.attack(subject.p2)
+      subject.attack
     end
   end
 end
