@@ -10,13 +10,16 @@
   <h1><%= @game.p1.name %> vs <%= @game.p2.name %>!</h1>
   <p><%= @game.active.name %>'s turn</p>
   <section>
+    <p><%= @game.p1.name %> HP: <%= @game.p1.hp %></p>
+  </section>
+  <section>
     <p><%= @game.p2.name %> HP: <%= @game.p2.hp %></p>
   </section>
   <form action="/action" method='post'>  
-    <button type="submit" name='action' value="Attack made!">Attack</button>
+    <button type="submit" name='action' value="attacked">Attack</button>
   </form>
   <% if !@result.nil? %> 
-    <p><%= @result %></p>
+    <p><%= @game.target.name %> <%= @result %> <%= @game.active.name %>!</p>
   <% end %>
 </body>
 </html>

@@ -8,7 +8,7 @@ class Game
     @target = @p2
   end
   
-  attr_reader :p1, :p2, :active
+  attr_reader :p1, :p2, :active, :target
 
   def attack
     @target.take_damage
@@ -18,7 +18,6 @@ class Game
   private
 
   def switch_roles
-    @active = @target
-    @target = @active
+    @active, @target = @target, @active
   end
 end
