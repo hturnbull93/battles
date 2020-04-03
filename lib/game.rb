@@ -7,9 +7,10 @@ class Game
     @active = @p1
     @target = @p2
     @winner = nil
+    @loser = nil
   end
   
-  attr_reader :p1, :p2, :active, :target, :winner
+  attr_reader :p1, :p2, :active, :target, :winner, :loser
 
   def attack
     @target.take_damage
@@ -20,8 +21,8 @@ class Game
   private
 
   def check_winner
-    @winner = @p1 if @p2.hp <= 0
-    @winner = @p2 if @p1.hp <= 0
+    @winner, @loser = @p1, @p2 if @p2.hp <= 0
+    @winner, @loser = @p2, @p1 if @p1.hp <= 0
   end
 
 

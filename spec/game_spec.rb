@@ -56,6 +56,15 @@ describe Game do
       one_sided_2.attack
       expect(one_sided_2.winner).to eq jim
     end
-
+  end
+  describe '#loser' do
+    it 'if a player 2 hp <= 0, loser is player 2' do
+      one_sided_1.attack
+      expect(one_sided_1.loser).to eq weakened
+    end
+    it 'if a player 1 hp <= 0, loser is player 1' do
+      one_sided_2.attack
+      expect(one_sided_2.loser).to eq weakened
+    end
   end
 end
